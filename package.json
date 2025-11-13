@@ -8,7 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index0.html index1.html index2.html index3.html index4.html index.html signup1.html forget.html reset.html admin.html payment.html createroom.html roomownerquiz.html",
-    "build": "parcel build index0.html index1.html index2.html index3.html index4.html index.html signup1.html forget.html reset.html admin.html payment.html createroom.html roomownerquiz.html --dist-dir dist"
+    "build": "parcel build index0.html index1.html index2.html index3.html index4.html index.html signup1.html forget.html reset.html admin.html payment.html createroom.html roomownerquiz.html --dist-dir dist",
+    "postinstall": "parcel prepare"
   },
   "dependencies": {
     "@google/genai": "^1.10.0",
