@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Quiz</title>
+    <style>
+        
+
+        body {
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #ff416c, #ff4b2b);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: white; /* optional: makes text readable */
+            }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+            }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #ff416c, #ff4b2b);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(20px);
+            }
+
+
+
+
+
+        body{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .question{
+            width: 75vw;
+            background-color: rgb(14, 14, 14);
+            border-radius: 10px;
+            border: 2px solid black;
+            margin-bottom: 20px;
+            padding: 20px;
+            color: white;
+
+        }
+        h1{
+            text-align: center;
+        }
+
+        /* body{
+            background-image: url(./plane2.avif) ;
+            background-clip:padding-box;
+            background-size: 100%;
+            
+           
+
+        } */
+
+        body {
+            /* background-image: url('./plane2.avif'); */
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+            }
+
+        #btnfinal,#finalmarks,#downloadpdfquestions,#downloadpdfanswer,#Refresh_Page{
+            display: flex;
+            width: fit-content;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f5f7;   /* Blue */
+            color: rgb(12, 12, 12);
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            /* margin-right: 20px; */
+            margin-bottom: 20px;
+        }
+
+        #btnfinal:hover{
+            background-color: #0056b3;
+        }
+
+        #marksBox {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #83cb67;
+        padding: 30px;
+        border: 2px solid #007BFF;
+        border-radius: 10px;
+        font-size: 24px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    #marksanddownload{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* ----------------------------- */
+.numberbox{
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        color: black;
+        font-size: 20px;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5px;
+       
+
+    }
+    .numberbox:hover{
+        background-color: #1671d1;
+    }
+    /* --------------------------------- */
+
+  #numberandquestion{
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+        /* background-color: #80ea8c; */
+        border: 5px solid rgb(243, 239, 239);
+        border-radius: 15px;
+        padding: 10px;
+
+    }
+    
+    /* ----------------------- */
+    /* #parentofnumberbox{
+        width: 20vw;
+        height:20vh;
+        overflow-y: scroll;
+
+    } */
+    
+    #numbermainbox{
+        width: 20vw;
+        height: 200px;
+        background-color: white;
+        border: 3px solid black;
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+        padding: 20px;
+        overflow-y: scroll;
+        margin: 10px;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+
+    #questionbox{
+        width: 75vw;
+        height: 60vh;
+        /* overflow: scroll; */
+        overflow-y: scroll;
+    }
+    .question{
+            width: 65vw;
+            margin-left: 10px;
+            margin-right: 10px;
+    }
+    #form4{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+
+
+    @media (max-width:400px){
+        #numberandquestion{
+            /* display: flex; */
+            flex-direction: column;
+        }
+          #numbermainbox{
+        width: 80vw;
+        height: 50px;
+        }
+
+        
+
+    #questionbox{
+        width: 95vw;
+        height: 60vh;
+        /* overflow: scroll; */
+        overflow-y: scroll;
+    }
+    .question{
+            width:80vw;
+            margin-left: 5px;
+            margin-right: 5px;
+    }
+
+
+    }
+    /* ----------- */
+    #parentofnumberbox{
+        display: flex;
+        flex-direction: column;
+        background-color: blanchedalmond;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+        border-radius: 10px;
+        /* margin-left: 10px; */
+    }
+    #goto{
+        color: rgb(15, 15, 15);
+        font-size: 20px;
+    }
+
+    /* ---- */
+   
+
+    #startquiz{
+        background-color: #4af31b;
+        color: rgb(40, 39, 39);
+        border: 8px solid rgb(53, 51, 51);
+        border-radius: 6px;
+        padding: 6px;
+        font-size: 30px;
+        
+    }
+    #startquiz:hover{
+        cursor: pointer;
+        background-color: rgb(156, 244, 156);
+    }
+
+   
+    </style>
+  
+    
+</head>
+<body>
+    <img src="https://res.cloudinary.com/dkzxd9cgq/image/upload/v1753740724/kalpquiz_fldlql.png" alt="kalpquizlogo" width="100" height="100" style="margin-bottom: 0;">
+    <h1 id="heading">KalpQuiz</h1>
+    <p  style="font-size: 20px; color: white;border-bottom: 3px solid white;font-weight: bold;margin: 0; ">I AM MAKING QUIZ FOR</p>
+    <p id="sub" style="font-size:20px; color: rgb(7, 249, 51);border-bottom: 3px solid white;font-weight: bold;margin: 0; "></p>
+    <!-- <p  style="font-size:20px; color: white;border-bottom: 3px solid white;font-weight: bold;margin: 0; ">"Select language…Choose level…Enter number of questions…”</p> -->
+    <form id="form6">
+        
+        <button id="startquiz">Start Quiz</button>
+    </form>
+    
+    <div id="numberandquestion">
+            <div id="parentofnumberbox">
+                <div id="goto">Go To Any Question</div>
+                <!-- <div id="numbermainbox" style="width: 300px;height:50px;background-color: white;border: 3px solid black;display: grid;grid-template-columns:1fr 1fr 1fr;justify-items: center;align-items: center;padding: 20px;overflow-y: scroll;margin-bottom: 50px;" > -->
+                <!-- <div id="numbermainbox" style="background-color: white;border: 3px solid black;display: grid;grid-template-columns:1fr 1fr 1fr;justify-items: center;align-items: center;padding: 20px;overflow-y: scroll;margin-bottom: 50px;" > -->
+                <div id="numbermainbox">
+                <!-- <div id="1" class="numberbox" ><a href="#question0" style="text-decoration: none;">1</a></div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div>
+                <div id="1" class="numberbox" >1</div> -->
+                </div>
+            </div>
+    
+
+            <div id="questionbox">
+                <form action="" id="form4">
+                <div id="all_question" class="allquestion-block">
+                
+                </div>
+                </form>
+            </div>
+    </div>
+
+
+    <div id="marksanddownload"></div>
+
+    <!-- <div id="answer91" style="background-color: blue;color: white;width:100vw;height: fit-content;"></div> -->
+    <!-- <div  style="visibility: hidden;color: black;" id="answer91">This is answer of all question:</div> -->
+    <div id="answer91" style="background-color: white;color: rgb(14, 14, 14);width:100vw;height: fit-content;font-size: medium;font-weight: 800;;"></div>
+
+    <div id="marksBox">
+        
+    </div>
+    <script type="module" src="./fourth.js"></script>
+    
+</body>
+</html>

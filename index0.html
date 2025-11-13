@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Categories</title>
+  <!-- <link rel="stylesheet" href="styles.css"/>-->
+   <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #111;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffa600;
+  padding: 15px 30px;
+}
+
+#differ div{
+  cursor: pointer;
+  /* display: flex;  */
+} 
+
+ #differ{
+  display: flex;
+  flex-direction: row;
+  /* flex-direction: row; */
+  column-gap: 20px;
+  font-weight: 700; 
+   } 
+
+  /* #differ{
+    display: flex;
+    flex-direction:row;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+  } */
+
+@media (max-width:400px){
+  #differ{
+    display: none;
+  }
+}
+
+
+/* 
+span{
+  width: 10px;
+  height: 5px;
+  background-color: rgb(238, 233, 233);
+} */
+
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+/* nav{
+  display: flex;
+  flex-direction: row;
+} */
+
+/* nav div{
+  margin: 0 10px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+ @media (max-widrh:400px){
+  nav{
+    display: none;
+    width:20px;
+    height: 20px;
+    overflow: hidden;
+    flex-direction: column;
+
+  }
+ } */
+
+
+.main {
+  padding: 40px;
+  text-align: center;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.card {
+  background-color: #f9f9f9;
+  width: 250px;
+  height: fit-content;
+  border: 2px solid #ffa600;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ffa600;
+  padding-bottom: 5px;
+}
+
+.card ul {
+  list-style: none;
+}
+
+.card li {
+  margin-bottom: 8px;
+}
+
+#htmlcontent{
+            
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #ff416c, #ff4b2b);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: rgb(28, 27, 27); /* optional: makes text readable */
+            }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+            }
+
+        #htmlcontent::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #ff416c, #ff4b2b);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(20px);
+            }
+
+
+
+
+
+        #htmlcontent{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .question{
+            width: 75vw;
+            background-color: rgb(14, 14, 14);
+            border-radius: 10px;
+            border: 2px solid black;
+            margin-bottom: 20px;
+            padding: 20px;
+            color: white;
+
+        }
+        h1{
+            text-align: center;
+        }
+
+        /* body{
+            background-image: url(./plane2.avif) ;
+            background-clip:padding-box;
+            background-size: 100%;
+            
+           
+
+        } */
+
+        #htmlcontent{
+            /* background-image: url('./plane2.avif'); */
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+            }
+  /* ----------------------------------------------- */
+        
+        .btn10:hover{
+            background-color: #181717;
+            color: white;
+        }
+
+        .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hamburger-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .hamburger-icon {
+      width: 25px;
+      height: 3px;
+      background-color: black;
+      margin: 5px 0;
+      transition: 0.4s;
+    }
+
+    .dropdown-content {
+      height: 60vh;
+      overflow: auto;
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      z-index: 1;
+      margin-top: 5px;
+      /* margin-right: 20px; */
+      right: 20px;
+    }
+
+    .dropdown-content a {
+    
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown.show .dropdown-content {
+      display: block;
+    }
+
+    /* ------------------ */
+    #preandroom{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .Previousandroom{
+      width: fit-content;
+      height: fit-content;
+      padding: 8px;
+      border: 2px solid black;
+      background-color: white;
+      color: #2575fc;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+
+    }
+
+
+   </style>
+</head>
+<body>
+  
+  <header>
+    <div class="logo">KalpQuiz</div>
+    <div id="differ">
+      <!-- <div></div> -->
+      <div class="Sports">&#128250; Sports</div>
+      <div class="Geography">&#128506;&#65039; Geography</div>
+      <div class="Novel">&#128218; Novel</div>
+      <div class="Literature">&#129501; Literature</div>
+      <div class="Countries">&#127758; Countries</div> 
+      <div class="Computer_Engineering">&#128421; Computer</div> 
+    </div>
+    <!-- <button id="logout">Logout</button> -->
+     <div width="200px" style="display: flex;justify-content: center; align-items: center;gap: 10px;">
+      <div >
+          <button id="quizpoint" class="btn10" style="padding: 5px; border-radius: 5px;font-weight: 800;">
+         Quiz Credit</button>
+    </div>
+      <div >
+          <button id="buyquizpoint" class="btn10" style="padding: 5px; border-radius: 5px;font-weight: 800;">
+         Buy Credit</button>
+    </div>
+     <div >
+          <button id="loginpage" class="btn10" style="padding: 5px; border-radius: 5px;">
+         Login</button>
+    </div>
+     <div >
+          <button id="logout" class="btn10" style="padding: 5px; border-radius: 5px;">
+         Logout</button>
+    </div>
+     <div id="adminPanel" style="display: none;">
+          <button id="admin" class="btn10" style="padding: 5px; border-radius: 5px;">
+         admin</button>
+    </div>
+
+    <!-- <div id="hinderburge">
+      <span>|</span>
+      <span>|</span>
+      <span>|</span>
+    </div> -->
+     <div class="dropdown" id="hamburgerMenu">
+    <button class="hamburger-button" id="hinderburgebutton">
+      <div class="hamburger-icon"></div>
+      <div class="hamburger-icon"></div>
+      <div class="hamburger-icon"></div>
+    </button>
+
+    <div class="dropdown-content" id="alltopic-anchor">
+      <!-- <a href="shows.html">Shows</a>
+      <a href="index1.html?category=geography">Geography</a>
+      <a href="index1.html?category=national">National</a> -->
+    </div>
+  </div>
+
+
+    
+    </div>
+
+    
+
+  </header>
+
+  <div id="htmlcontent">
+
+  <section class="main">
+    <h1>KalpQuiz Categories</h1>
+    <p>Discover the most popular quizzes and quiz categories on KalpCard</p>
+    <div id="preandroom" >
+    <div id="Previousquiz" class="Previousandroom">Previous Old Quiz</div>
+    <div id="CreateRoom" class="Previousandroom">Create Room</div>
+    
+    </div>
+
+
+    <div class="categories" id="categories1">
+      <!-- Sports -->
+      <!-- <div class="card"> -->
+      
+        <!-- <a href="./index1.html"><div class="card-title" id="Sports">&#128250 Sports</div></a> -->
+        <!-- <div class="card-title" id="Sports">&#128250 Sports</div> -->
+        
+      <!-- </div> -->
+
+      <!-- Geography -->
+      <!-- <div class="card">
+        <div class="card-title" id="Geography">&#128506 Geography</div>
+       
+      </div> -->
+
+      <!-- Music -->
+      <!-- <div class="card">
+        <div class="card-title" id="Music">🎵 Music</div>
+       
+      </div> -->
+
+      <!-- Movies -->
+      <!-- <div class="card">
+        <div class="card-title" id="Movies">🎬 Movies</div>
+      </div> -->
+      <!-- Television -->
+      <!-- <div class="card">
+        <div class="card-title" id="Television">🎬 Television</div>
+      </div> -->
+
+
+    </div>
+  </section>
+  
+</div>
+  <!-- <script src="./aiquestion.js"  type="module"></script> -->
+<script src="./zero.js" type="module"></script>
+  
+</body>
+</html>

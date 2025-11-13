@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create room</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #8b5cf6, #ec4899); /* purple-500 to pink-500 */
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      height: fit-content;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #6b21a8; /* purple-700 */
+      margin-bottom: 24px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151; /* gray-700 */
+      margin-bottom: 4px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    input:focus {
+      border-color: #a855f7;
+      box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3); /* purple-500 ring */
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #7c3aed; /* purple-600 */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #6d28d9; /* purple-700 */
+    }
+
+    /* .text-sm {
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280; /* gray-500 */
+      /* margin-top: 16px; */
+    /* } */
+
+    /* .text-sm a {
+      color: #8b5cf6;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .text-sm a:hover {
+      text-decoration: underline;
+    } */
+
+    .extra-buttons {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .extra-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: black;
+      color: white;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-bottom: 12px;
+    }
+
+    .extra-btn:hover {
+      background-color: #1f2937; /* gray-800 */
+    }
+
+    /* Loader styles */
+        #loader {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 9999;
+        display: none; /* Show with JS: loader.style.display = 'flex'; */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        }
+
+        #loader p {
+        margin-top: 16px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #6b21a8; /* purple-700 */
+        }
+
+        .spinner {
+        width: 64px;
+        height: 64px;
+        border: 4px solid #9f7aea; /* purple-500 */
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        }
+
+        /* Spin animation */
+        @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+        }
+
+
+        #studentandowner{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            /* align-items: center; */
+            gap: 40px;
+        }
+
+        @media (max-width:500px){
+            #studentandowner{
+            justify-self: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 40px;
+        }
+        }
+
+        .minmax{
+            font-size: 10px;
+            color: #6d28d9;
+        }
+        
+        #deductcredit, #availablecredit ,#afterdeduction{
+          color: #5d5b5c;
+        }
+
+        #statusmessage1{
+          display:none;
+          width:100%;
+          height: 40px;
+          /* background-color: pink; */
+          
+        }
+
+        /* -------------------------for eye: */
+        /* .password-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  font-family: Arial, sans-serif;
+} */
+
+/* .password-wrapper {
+  margin-bottom: 15px;
+} */
+
+.input-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  width: 100%;
+  padding: 10px 45px 10px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 5px;
+  /* width: 10%; */
+  /* height:90% ; */
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6d6e6e;
+  padding: 0;
+}
+
+.toggle-password:hover {
+  color: #050505;
+  background-color: #989799; /* purple-700 */
+
+}
+
+.toggle-password svg {
+  width: 80%;
+  height: 80%;
+}  
+
+
+       
+  </style>
+</head>
+
+
+<body>
+
+
+ <div id="studentandowner">
+  <div class="container">
+    <h1>Roommate Login</h1>
+    
+    <form id="loginForm1">
+      
+      <div>
+        <label for="roomid1">Room Id</label>
+        <input type="text" id="roomid1" name="roomid1" required />
+      </div>
+      <div>
+        <!-- <label for="password1">Room Public Password</label> -->
+        <!-- <input type="password" id="password1" name="password1" required /> -->
+
+        <div class="password-wrapper">
+              <label for="password1">Room Public Password</label>
+              <div class="input-container">
+                <input type="password" name="password1" class="password-input" minlength="8" maxlength="30" 
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                  title="Password must contain at least 8 characters, including uppercase, lowercase, number, and special character." required />
+                <button type="button" id="password1" class="toggle-password" aria-label="Show password">
+                  <!-- Eye Open -->
+                  <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    viewBox="0 0 24 24">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <!-- Eye Close -->
+                  <svg class="eye-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    viewBox="0 0 24 24" style="display:none;">
+                    <!-- <path d="M17.94 17.94A10.05 10.05 0 0112 20c-7 0-11-8-11-8a21.76 21.76 0 015.06-5.94M9.88 9.88A3 3 0 1114.12 14.12"></path> -->
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+        </div>
+        <div class="minmax">min-length=8 max-length=30 include Uppercase,Lowercase,Number and Special Character(@$!%*?&)</div>
+<!-- -------------- -->
+        
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- <p class="text-sm">
+      Don't have an account?
+      <a href="./signup1.html">Sign up</a>
+    </p> -->
+
+    <!-- <div class="extra-buttons">
+      <div id="forget1" class="extra-btn">Forget Password</div>
+      <div id="reset1" class="extra-btn">Reset Password</div>
+    </div> -->
+  </div>
+  
+  <div class="container">
+    <h1>Create Room</h1>
+    
+    <form id="loginForm2">
+      
+      <!-- <div>
+        <label for="roomid2">Room Id</label>
+        <input type="text" id="roomid2" name="roomid2" required />
+      </div> -->
+
+      <!-- ----------------------------- -->
+      <!-- <div>
+        <label for="password2">Room Private Password</label>
+        <input type="password" id="password2" name="password2" required />
+        <button id="togglePassword" type="button">👁</button>
+      </div> -->
+      <!-- --------------------- -->
+  <!-- <div class="password-wrapper">
+  <label for="password2">Room Private Password</label>
+  <div class="input-container">
+    <input type="password" id="password2" name="password2" required />
+    <button id="togglePassword" type="button" aria-label="Show password"> -->
+      <!-- Eye SVG -->
+      <!-- <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg> -->
+      <!-- Eye Off SVG (hidden by default) -->
+      <!-- <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;"> -->
+        <!-- <path d="M17.94 17.94A10.05 10.05 0 0112 20c-7 0-11-8-11-8a21.76 21.76 0 015.06-5.94M9.88 9.88A3 3 0 1114.12 14.12"></path> -->
+        <!-- <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle> -->
+
+        <!-- <line x1="1" y1="1" x2="23" y2="23"></line>
+      </svg>
+    </button>
+  </div>
+</div> -->
+
+<div class="password-wrapper">
+  <label for="password2">Room Private Password</label>
+  <div class="input-container">
+    <input type="password"  id="password2" name="password2" class="password-input" minlength="8" maxlength="30" 
+       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+       title="Password must contain at least 8 characters, including uppercase, lowercase, number, and special character." required />
+    <button type="button" class="toggle-password" aria-label="Show password">
+      <!-- Eye Open -->
+      <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        viewBox="0 0 24 24">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      <!-- Eye Close -->
+      <svg class="eye-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        viewBox="0 0 24 24" style="display:none;">
+        <!-- <path d="M17.94 17.94A10.05 10.05 0 0112 20c-7 0-11-8-11-8a21.76 21.76 0 015.06-5.94M9.88 9.88A3 3 0 1114.12 14.12"></path> -->
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+
+        <line x1="1" y1="1" x2="23" y2="23"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="minmax">min-length=8 max-length=30 include Uppercase,Lowercase,Number and Special Character(@$!%*?&)</div>
+
+</div>
+
+<!-- --------------------------------- -->
+      <!-- <div>
+        <label for="password3">Room Public Password</label>
+        <input type="password" id="password3" name="password3" required />
+      </div> -->
+
+      <div class="password-wrapper">
+        <label for="password3">Room Public Password</label>
+        <div class="input-container">
+          <input type="password" id="password3" name="password3" class="password-input" 
+         minlength="8" maxlength="30" 
+       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+       title="Password must contain at least 8 characters, including uppercase, lowercase, number, and special character." required />
+          <button type="button" class="toggle-password" aria-label="Show password">
+            <!-- Eye Open -->
+            <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <!-- Eye Close -->
+            <svg class="eye-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              viewBox="0 0 24 24" style="display:none;">
+              <!-- <path d="M17.94 17.94A10.05 10.05 0 0112 20c-7 0-11-8-11-8a21.76 21.76 0 015.06-5.94M9.88 9.88A3 3 0 1114.12 14.12"></path> -->
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="minmax">min-length=8 max-length=30 include Uppercase,Lowercase,Number and Special Character(@$!%*?&)</div>
+
+      </div>
+      
+<!-- --------------------- -->
+
+
+
+
+
+
+      <div>
+        <label for="studentno">How Many Students?</label>
+        <input type="number" id="studentno" name="howmanystudent" min="5" max="200" required />
+        <div class="minmax">minimum-5 maximum-200</div>
+      </div>
+      <div>
+        <label for="questionno">How Many Quetions In Quiz?</label>
+        <input type="number" id="questionno" name="howmanyquestion" min="20" max="200" required />
+        <div class="minmax">minimum-20 maximum-200</div>
+      </div>
+
+      <div id="availablecredit">Available Quiz Credit:</div>
+      <div id="deductcredit"> Credit will Deduct:</div>
+      <div id="afterdeduction"> After deduction Credit:</div>
+      <div id="statusmessage1"></div>
+      <div><a href="./payment.html">Click here for Buy Credits</a></div>
+
+      <button type="submit">Create Room</button>
+    </form>
+
+    <!-- <p class="text-sm">
+      Don't have an account?
+      <a href="./signup1.html">Sign up</a>
+    </p> -->
+
+    <!-- <div class="extra-buttons">
+      <div id="forget1" class="extra-btn">Forget Password</div>
+      <div id="reset1" class="extra-btn">Reset Password</div>
+    </div>-->
+
+  </div> 
+  <div class="container">
+    <h1>Room Owner Login</h1>
+    
+    <form id="loginForm3">
+      
+      <div>
+        <label for="roomid2">Room Id</label>
+        <input type="text" id="roomid2" name="roomid2" required />
+      </div>
+      <div>
+        <!-- <label for="password4">Room Private Password</label>
+        <input type="password" id="password4" name="password4" required /> -->
+
+        <div class="password-wrapper">
+        <label for="password4">Room Private Password</label>
+        <div class="input-container">
+          <input type="password" name="password4" class="password-input" minlength="8" maxlength="30" 
+       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+       title="Password must contain at least 8 characters, including uppercase, lowercase, number, and special character." required />
+          <button type="button" id="password4" class="toggle-password" aria-label="Show password">
+            <!-- Eye Open -->
+            <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <!-- Eye Close -->
+            <svg class="eye-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              viewBox="0 0 24 24" style="display:none;">
+              <!-- <path d="M17.94 17.94A10.05 10.05 0 0112 20c-7 0-11-8-11-8a21.76 21.76 0 015.06-5.94M9.88 9.88A3 3 0 1114.12 14.12"></path> -->
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="minmax">min-length=8 max-length=30 include Uppercase,Lowercase,Number and Special Character(@$!%*?&)</div>
+
+      </div>
+
+      </div>
+     
+      
+
+      
+
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- <p class="text-sm">
+      Don't have an account?
+      <a href="./signup1.html">Sign up</a>
+    </p> -->
+
+    <div class="extra-buttons">
+      <div id="forget1" class="extra-btn">Forget Password</div>
+      <div id="reset1" class="extra-btn">Reset Password</div>
+    </div>
+
+  </div> 
+
+
+  </div>
+
+
+
+   <!-- Loader -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>KalpQuiz Processing...</p>
+    </div>
+
+  <script type="module" src="./createroom.js"></script>
+
+</body>
+</html>

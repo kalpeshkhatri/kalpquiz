@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KalpQuiz - Buy Quiz Credits</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.payment-container {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 5px;
+  color: #222;
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.plans {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.plan-card {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1;
+  border: 2px solid transparent;
+}
+
+.plan-card h3 {
+  margin: 0;
+  color: #27ae60;
+}
+
+.plan-card p {
+  font-size: 14px;
+  color: #444;
+}
+.givencredit{
+  color: #2f302f;
+  font-weight: 600;
+}
+.creditsentence{
+    font-size: 14px;
+    color: #444;
+}
+/* .plan-card span {
+  font-size: 14px;
+  color: #444;
+} */
+.rupees{
+  color: #222;
+  font-weight: 800;
+}
+
+
+.plan-card button {
+  margin-top: 8px;
+  padding: 5px 10px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.plan-card button:hover {
+  background: #219150;
+}
+
+.plan-card.selected {
+  border-color: #27ae60;
+  background: #e9f9f0;
+}
+
+label {
+  font-size: 14px;
+  margin-top: 10px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background: #27ae60;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+button[type="submit"]:hover:enabled {
+  background: #219150;
+}
+
+#statusMessage {
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+}
+
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <div style="display: flex;flex-direction: column;align-items: center;">
+    <p style="font-size: 30px;margin: 0px;font-weight: 800;color: blue;">KalpQuiz</p>
+    <h2>Buy Quiz Credits</h2>
+      <div style="display: flex;flex-direction: column;align-items: center;margin: 0;">
+      <!-- <ul> -->
+      
+        <p style="margin: 0;">✔ No ads</p>
+        <p style="margin: 0;">✔ Early access to new quizzes</p>
+      <!-- </ul> -->
+      </div>
+    <p class="description">Choose your plan and unlock more quizzes</p>
+    </div>
+
+    <div class="plans">
+      <!-- <div class="plan-card" data-price="100" data-credits="20">
+        <h3>₹100</h3>
+        <p>20 Quiz Credits</p>
+        <button>Select</button>
+      </div>
+
+      <div class="plan-card" data-price="200" data-credits="42">
+        <h3>₹200</h3>
+        <p>42 Quiz Credits</p>
+        <button>Select</button>
+      </div>
+
+      <div class="plan-card" data-price="300" data-credits="70">
+        <h3>₹300</h3>
+        <p>70 Quiz Credits</p>
+        <button>Select</button>
+      </div> -->
+    </div>
+
+    <form id="paymentForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required />
+
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required />
+
+      <input type="hidden" id="selectedPrice" />
+      <input type="hidden" id="selectedCredits" />
+
+      <button type="submit" id="payBtn" disabled>Pay Now</button>
+    </form>
+
+    <p id="statusMessage"></p>
+  </div>
+
+  <script src="payment.js"></script>
+  <!-- for rojarpay -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- ------------------------ -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KalpQuiz Payment</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.payment-container {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 5px;
+  color: #222;
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.plan-box {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.plan-box h3 {
+  margin: 0;
+}
+
+.price {
+  font-size: 20px;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+label {
+  font-size: 14px;
+  margin-top: 10px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  background: #27ae60;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #219150;
+}
+
+#statusMessage {
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+}
+
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h2>KalpQuiz Premium</h2>
+    <p class="description">Unlock all quizzes and exclusive content</p>
+
+    <div class="plan-box">
+      <h3>Premium Access</h3>
+      <p class="price">₹199</p>
+      <ul>
+        <li>✔ Unlimited quiz access</li>
+        <li>✔ No ads</li>
+        <li>✔ Early access to new quizzes</li>
+      </ul>
+    </div>
+
+    <form id="paymentForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required />
+
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required />
+
+      <button type="submit" id="payBtn">Pay Now</button>
+    </form>
+
+    <p id="statusMessage"></p>
+  </div>
+
+  <script src="payment.js"></script>
+</body>
+</html> -->
