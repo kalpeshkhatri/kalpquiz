@@ -1,0 +1,22 @@
+{
+  "extends": "@parcel/config-default",
+  "resolvers": ["@parcel/resolver-default"],
+  "transformers": {
+    "*.js": ["@parcel/transformer-js"]
+  },
+  "namers": ["@parcel/namer-default"],
+  "bundlers": {
+    "*.js": ["@parcel/bundler-js"]
+  },
+  "runtimes": [],
+  "packagers": {
+    "*.js": "@parcel/packager-js"
+  },
+  "optimizers": {},
+  "reporters": ["@parcel/reporter-cli"],
+  "validators": {},
+  "extends": "@parcel/config-default",
+  "alias": {
+    "process": "process/browser"
+  }
+}

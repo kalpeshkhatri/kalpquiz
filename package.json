@@ -7,12 +7,15 @@
   "type": "module",
   "scripts": {
     "start": "parcel index.html index0.html index1.html index2.html index3.html index4.html  signup1.html forget.html reset.html admin.html payment.html createroom.html roomownerquiz.html",
-    "build": "parcel build index.html index0.html index1.html index2.html index3.html index4.html  signup1.html forget.html reset.html admin.html payment.html createroom.html roomownerquiz.html --dist-dir dist"    
+    "build": "parcel build index.html index0.html index1.html index2.html index3.html index4.html signup1.html forget.html reset.html admin.html payment.html createroom.html roomownerquiz.html --dist-dir dist"
   },
   "dependencies": {
     "@google/genai": "^1.10.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
     "parcel": "2.8.3"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
   }
 }
