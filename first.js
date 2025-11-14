@@ -270,7 +270,7 @@ function putsubtopics(){
     
     topiccontainer.innerHTML+=`<div class="card"><div class="card-title" id=${input}>${obj['symbol']} ${withoutdasename}</div></div>`
     // console.log(element)
-    allsubtopic.push(output)
+    allsubtopic.push(input)
 });
 }
 
