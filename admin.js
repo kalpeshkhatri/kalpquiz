@@ -321,7 +321,7 @@ async function editTopic(id) {
   form.onsubmit = async (e) => {
     e.preventDefault();
     const name = document.getElementById('topicName').value;
-    const symbol = document.getElementById('topicSymbol').value;
+    const symbol = document.getElementById('mainsymbol1').value;
     const subtopics = Array.from(document.querySelectorAll('.subtopic')).map(div => ({
       name: div.querySelector('.subtopic-name').value,
       symbol: div.querySelector('.subtopic-symbol').value
