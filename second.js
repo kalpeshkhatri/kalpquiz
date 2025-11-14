@@ -469,7 +469,9 @@ element53.addEventListener('click',async (event)=>{
         console.log(arr1)
 
         // update credit in localstorage:
-        localStorage.setItem('Kalpquiz_credit',data.creditQuiz);
+        if (data.creditQuiz !== undefined) {
+            localStorage.setItem('Kalpquiz_credit', data.creditQuiz);
+          }
         // // const arr2=JSON.parse(arr1)
         // // const arr2=[...arr1]
         // // const arr2=arr1.replace(/^```[a-zA-Z]*\n?/, "").replace(/```$/, "")
