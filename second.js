@@ -212,7 +212,7 @@ async function startQuiz(number, Language, Level, maintopic1, subtopic1,previous
 
   if(repeat=='Yes'){
   previousquestion2;
-  res = await fetch('http://localhost:5000/quiz/create', {
+  res = await fetch('https://kalpquiz-backend.onrender.com/quiz/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ async function startQuiz(number, Language, Level, maintopic1, subtopic1,previous
 
   else{
     previousquestion2=await getQuestionTextsBySubtopic(subtopic1);
-    res = await fetch('http://localhost:5000/quiz/create', {
+    res = await fetch('https://kalpquiz-backend.onrender.com/quiz/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -436,7 +436,7 @@ element53.addEventListener('click',async (event)=>{
         let res;
         console.log(Language, Level, maintopic1, subtopic1,nos1);
         if(repeat=='Yes'){
-            res = await fetch('http://localhost:5000/quiz/create', {
+            res = await fetch('https://kalpquiz-backend.onrender.com/quiz/create', {
           method: 'POST',
           headers: {
          'Content-Type': 'application/json',
@@ -446,7 +446,7 @@ element53.addEventListener('click',async (event)=>{
         });
         }
         else{
-            res = await fetch('http://localhost:5000/quiz/createfornotreapeat', {
+            res = await fetch('https://kalpquiz-backend.onrender.com/quiz/createfornotreapeat', {
           method: 'POST',
           headers: {
          'Content-Type': 'application/json',
