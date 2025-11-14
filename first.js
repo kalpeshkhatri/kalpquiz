@@ -315,7 +315,7 @@ document.getElementById('logout').addEventListener('click',async()=>{
 
     await clearAllMainTopics();
     
-    window.location.href = "./login1.html";
+    window.location.href = "./index.html";
 })
 
 

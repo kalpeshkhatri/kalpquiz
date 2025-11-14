@@ -331,7 +331,7 @@ document.getElementById('logout').addEventListener('click',async ()=>{
     localStorage.removeItem('kalpquiz_token_expiry');
     await clearAllMainTopics();
     
-    window.location.href = "./login1.html";
+    window.location.href = "./index.html";
 })
 
 
