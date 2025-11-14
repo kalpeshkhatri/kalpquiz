@@ -238,7 +238,8 @@ function putallmaintopic(){
     // const element=makediv101(obj['name'],obj['symbol'])
     // topiccontainer.append(element)
     // topiccontainer.innerHTML+=`${element}`
-    topiccontainer.innerHTML+=`<div class="card"><div class="card-title" id=${obj['name']}>${obj['symbol']} ${obj['name']}</div></div>`
+    const withoutdasename=obj['name'].replace(/_/g, " ")
+    topiccontainer.innerHTML+=`<div class="card"><div class="card-title" id=${obj['name']}>${obj['symbol']} ${withoutdasename}</div></div>`
     // console.log(element)
 });
 }

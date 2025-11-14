@@ -265,8 +265,10 @@ function putsubtopics(){
 
     //jo id ma space hase to nahi chale tena mate aapne name mathi space ne nikaliye 6iye.
     let input=obj['name']
-    const output = input.replace(/ /g, "_");
-    topiccontainer.innerHTML+=`<div class="card"><div class="card-title" id=${output}>${obj['symbol']} ${obj['name']}</div></div>`
+    // const output = input.replace(/ /g, "_");
+    const withoutdasename=obj['name'].replace(/_/g, " ")
+    
+    topiccontainer.innerHTML+=`<div class="card"><div class="card-title" id=${input}>${obj['symbol']} ${withoutdasename}</div></div>`
     // console.log(element)
     allsubtopic.push(output)
 });
