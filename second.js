@@ -766,7 +766,7 @@ element53.addEventListener('click',async (event)=>{
             alert(`Your remaiming Quiz credits is ${balance}.Enter number below or equal to ${balance}.`);
             }
             else{
-            alert(`Your Quiz balance is zero.`)
+            alert(`Your Quiz balance is ${balance}.`)
             }
             window.location.href = './payment.html';
 
