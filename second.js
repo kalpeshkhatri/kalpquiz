@@ -467,6 +467,9 @@ element53.addEventListener('click',async (event)=>{
 
         const arr1=data.questions;
         console.log(arr1)
+        if (arr1==undefined){
+          document.getElementById('loader').style.display = 'none';
+        }
 
         // update credit in localstorage:
         if (data.creditQuiz !== undefined) {
